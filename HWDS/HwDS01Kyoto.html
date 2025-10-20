@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日本京都 - 旅遊探索者</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome 圖標 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- 自定義CSS -->
+    <style>
+        :root {
+            --primary-color: #bc002d; /* 日本紅 */
+            --secondary-color: #f7e5c2; /* 米色 */
+            --accent-color: #2c3e50; /* 深藍 */
+            --dark-color: #2c3e50;
+            --light-color: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Microsoft JhengHei', sans-serif;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .culture-card {
+            transition: transform 0.3s;
+            margin-bottom: 30px;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .culture-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .culture-img {
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .attraction-card {
+            border: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        
+        .attraction-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .attraction-img {
+            height: 250px;
+            object-fit: cover;
+        }
+               
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--light-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid var(--primary-color);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .left::after {
+            right: -13px;
+        }
+        
+        .right::after {
+            left: -13px;
+        }
+        
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 寬高比 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .practical-info {
+            background-color: var(--secondary-color);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .info-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .seasonal-guide {
+            background: linear-gradient(135deg, var(--primary-color), #8b0000);
+            color: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+        
+        .seasonal-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            z-index: 1000;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::after {
+                left: 21px;
+            }
+            
+            .right {
+                left: 0;
+            }
+            
+            .kyoto-hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 40px 0;
+        }
+
+        .kyoto-hero-section {
+            background-image: url("./SP-Kyoto00.jpg"); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 100px 0; 
+            color: rgb(255, 255, 255); 
+        }
+    </style>
+</head>
+<body>
+    <!-- 導航欄 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="./HwDS01.html">
+            <img src="./StarRail.jpg" alt="旅遊探索者" width="30" height="30" class="me-2">
+            旅遊探索者
+             </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./HwDS01.html">首頁</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" id="destinationsDropdown" role="button" data-bs-toggle="dropdown">
+                            目的地
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item active" href="./HwDS01Kyoto.html">日本京都</a></li>
+                            <li><a class="dropdown-item" href="./HwDS01Rome.html">義大利羅馬</a></li>
+                            <li><a class="dropdown-item" href="./HwDS01Marrakesh.html">摩洛哥馬拉喀什</a></li>
+                            <li><a class="dropdown-item" href="./HwDS01MachuPicchu.html">秘魯馬丘比丘</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 京都橫幅 -->
+    <section class="kyoto-hero-section">
+    <div class="container">
+            <h1 class="display-4 fw-bold">日本京都</h1>
+           <p class="lead mb-4">千年古都，日本傳統文化的守護者</p>
+        </div>
+    </section>
+
+    <!-- 京都介紹 -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="section-title">京都簡介</h2>
+                    <p>京都，日本古都，自794年至1868年間一直是日本的首都。這座城市擁有超過1200座寺廟、400座神社和3處聯合國教科文組織世界遺產，是日本傳統文化的寶庫。</p>
+                    <p>京都以其精緻的庭院、傳統茶道、藝妓文化和四季分明的美景而聞名。春季的櫻花、秋季的紅葉吸引著來自世界各地的遊客。</p>
+                    <p>這座城市完美地融合了古老傳統與現代生活，既有保存完好的歷史街區，又有現代化的商業設施。</p>
+                </div>
+                <div class="col-lg-6">
+                    <img src="./SP-Kyoto05.jpg" alt="京都寺廟" class="img-fluid rounded shadow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- 歷史時間線 -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center">京都歷史</h2>
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h5>794年</h5>
+                        <p>桓武天皇將首都從奈良遷至平安京（現在的京都），開啟了平安時代。</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h5>794-1185年</h5>
+                        <p>平安時代，京都成為日本政治和文化中心，貴族文化繁榮發展。</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h5>1336年</h5>
+                        <p>足利尊氏建立室町幕府，京都繼續作為政治中心。</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h5>1467-1477年</h5>
+                        <p>應仁之亂，京都大部分地區被毀，但隨後得到重建。</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h5>1603年</h5>
+                        <p>德川家康建立江戶幕府，政治中心移至江戶（東京），但京都仍是天皇居所。</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h5>1868年</h5>
+                        <p>明治維新，首都正式遷至東京，結束了京都作為日本首都的歷史。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- 文化特色 -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center">文化與傳統</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card culture-card">
+                        <img src="./SP-Kyoto06.jpg" class="card-img-top culture-img" alt="藝妓文化">
+                        <div class="card-body">
+                            <h5 class="card-title">藝妓文化</h5>
+                            <p class="card-text">京都的祇園地區是日本藝妓文化的中心。藝妓是經過嚴格訓練的傳統表演藝術家，精通音樂、舞蹈和茶道。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card culture-card">
+                        <img src="./SP-Kyoto07.jpg" class="card-img-top culture-img" alt="茶道">
+                        <div class="card-body">
+                            <h5 class="card-title">茶道</h5>
+                            <p class="card-text">茶道是日本傳統文化的精髓，強調"和、敬、清、寂"的精神。京都有許多茶室和茶道學校。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card culture-card">
+                        <img src="./SP-Kyoto08.jpg" class="card-img-top culture-img" alt="和服">
+                        <div class="card-body">
+                            <h5 class="card-title">和服文化</h5>
+                            <p class="card-text">和服是日本傳統服裝，在京都特別流行。遊客可以租借和服，在古色古香的街道上漫步，體驗傳統日本風情。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 季節指南 -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center">四季京都</h2>
+            <div class="row">
+                <div class="col-md-3 text-center">
+                    <div class="seasonal-guide">
+                        <div class="seasonal-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <h5>春季</h5>
+                        <p>3月-5月
+                            <br>櫻花盛開，氣候溫和，是京都最美的季節。</p>
+                    </div>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="seasonal-guide">
+                        <div class="seasonal-icon">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                        <h5>夏季</h5>
+                        <p>6月-8月
+                            <br>炎熱潮濕，但可以參加祇園祭等傳統節慶。</p>
+                    </div>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="seasonal-guide">
+                        <div class="seasonal-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h5>秋季</h5>
+                        <p>9月-11月
+                            <br>紅葉季節，氣候涼爽，景色壯麗，適合賞楓。</p>
+                    </div>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="seasonal-guide">
+                        <div class="seasonal-icon">
+                            <i class="fas fa-snowflake"></i>
+                        </div>
+                        <h5>冬季</h5>
+                        <p>12月-2月
+                            <br>寒冷但遊客較少，體驗雪中寺廟的寧靜之美。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主要景點 -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center">主要景點</h2>
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="card attraction-card">
+                        <img src="./SP-Kyoto01.jpg"class="card-img-top attraction-img" alt="清水寺">
+                        <div class="card-body">
+                            <h5 class="card-title">清水寺</h5>
+                            <p class="card-text">建於778年，是京都最著名的寺廟之一。主殿的陽台懸空在山坡上，提供俯瞰京都的絕佳視角。春季櫻花和秋季紅葉時節尤為壯觀。</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted"><i class="fas fa-map-marker-alt me-1"></i> 東山區</small>
+                                <span class="badge bg-primary">世界遺產</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card attraction-card">
+                        <img src="./SP-Kyoto02.jpg" class="card-img-top attraction-img" alt="嵐山竹林">
+                        <div class="card-body">
+                            <h5 class="card-title">嵐山竹林</h5>
+                            <p class="card-text">位於京都西郊的嵐山地區，這片高聳的竹林小徑是京都最寧靜美麗的景點之一。風吹過竹林的聲音被認為具有治療效果。</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted"><i class="fas fa-map-marker-alt me-1"></i> 右京區</small>
+                                <span class="badge bg-success">免費參觀</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card attraction-card">
+                        <img src="./SP-Kyoto03.jpg" class="card-img-top attraction-img" alt="金閣寺">
+                        <div class="card-body">
+                            <h5 class="card-title">金閣寺</h5>
+                            <p class="card-text">正式名稱為鹿苑寺，因其外牆覆蓋金箔而得名。這座寺廟坐落於美麗的庭園和池塘之中，是日本最著名的建築之一。</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted"><i class="fas fa-map-marker-alt me-1"></i> 北區</small>
+                                <span class="badge bg-primary">世界遺產</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card attraction-card">
+                        <img src="./SP-kyoto04.jpg" class="card-img-top attraction-img" alt="伏見稻荷大社">
+                        <div class="card-body">
+                            <h5 class="card-title">伏見稻荷大社</h5>
+                            <p class="card-text">以其數千座紅色鳥居組成的隧道而聞名，是京都最具代表性的景觀之一。這座神社供奉稻荷神，是商業和農業的神明。</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted"><i class="fas fa-map-marker-alt me-1"></i> 伏見區</small>
+                                <span class="badge bg-success">免費參觀</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 視頻介紹 -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center">京都之旅</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="video-container">
+                        <!-- 實際使用時替換為真實的京都旅遊視頻 -->
+                        <iframe width="906" height="518" src="https://www.youtube.com/embed/hK5ZVu2etdQ" title="6 days in Kyoto｜ep.2｜famous sukiyaki place, Kiyomizu⛩, cozy vibe , must eat kushiage" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 實用資訊 -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center">實用旅行資訊</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="practical-info">
+                        <div class="info-icon">
+                            <i class="fas fa-plane"></i>
+                        </div>
+                        <h5>到達方式</h5>
+                        <p>從東京乘坐新幹線約2小時15分鐘即可到達京都。關西國際機場有直達京都的火車和巴士，車程約75分鐘。</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="practical-info">
+                        <div class="info-icon">
+                            <i class="fas fa-bed"></i>
+                        </div>
+                        <h5>住宿建議</h5>
+                        <p>京都提供各種住宿選擇，從傳統日式旅館（Ryokan）到現代酒店。建議提前預訂，特別是在旅遊旺季。</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="practical-info">
+                        <div class="info-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <h5>美食體驗</h5>
+                        <p>京都以其精緻的懷石料理、豆腐料理和抹茶甜點聞名。不要錯過嘗試當地特色如湯豆腐、宇治抹茶和京野菜。</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="practical-info">
+                        <div class="info-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h5>最佳旅行時間</h5>
+                        <p>春季（3月-5月）賞櫻和秋季（9月-11月）觀紅葉是最佳時節。夏季炎熱潮濕，冬季寒冷但遊客較少。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 返回頂部按鈕 -->
+    <button id="backToTop" class="back-to-top btn btn-primary rounded-circle">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- 頁腳 -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>關於我們</h5>
+                    <p>旅遊探索者致力於提供最新、最全面的旅遊資訊，幫助旅行者規劃完美的旅程。</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>快速連結</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="./HwDS01.html" class="text-white">首頁</a></li>
+                        <li><a href="./HwDS01Kyoto.html" class="text-white">日本京都</a></li>
+                        <li><a href="./HwDS01Rome.html" class="text-white">義大利羅馬</a></li>
+                        <li><a href="./H0wDS01Marrakesh.html" class="text-white">摩洛哥馬拉喀什</a></li>
+                        <li><a href="./HwDS01MachuPicchu.html" class="text-white">秘魯馬丘比丘</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>聯絡我們</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-envelope me-2"></i> info@travelexplorer.com</li>
+                        <li><i class="fas fa-phone me-2"></i> +852 1321 2465</li>
+                        <li><i class="fas fa-map-marker-alt me-2"></i> 尖沙咀加連威老道39號太興商業大廈地下C2鋪</li>
+                    </ul>
+                    <div class="mt-3">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="bg-white">
+            <div class="text-center pt-3">
+                <p>&copy; 2025 旅遊探索者 By Tom</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS 和 Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    
+    <!-- 自定義JavaScript -->
+    <script>
+        // 返回頂部功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const backToTopButton = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.style.display = 'block';
+                } else {
+                    backToTopButton.style.display = 'none';
+                }
+            });
+            
+            backToTopButton.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

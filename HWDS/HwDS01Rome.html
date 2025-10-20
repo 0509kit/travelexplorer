@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>義大利羅馬 - 旅遊探索者</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome 圖標 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- 自定義CSS -->
+    <style>
+        :root {
+            --primary-color: #cd212a; /* 義大利紅 */
+            --secondary-color: #008c45; /* 義大利綠 */
+            --accent-color: #f4f5f0; /* 義大利白 */
+            --dark-color: #2c3e50;
+            --light-color: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Microsoft JhengHei', sans-serif;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .culture-card {
+            transition: transform 0.3s;
+            margin-bottom: 30px;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .culture-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .culture-img {
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .attraction-card {
+            border: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        
+        .attraction-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .attraction-img {
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .roman-pattern {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect x="20" y="20" width="60" height="60" fill="none" stroke="%23cd212a" stroke-width="2" opacity="0.1"/></svg>');
+            background-size: 100px 100px;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--light-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid var(--primary-color);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .left::after {
+            right: -13px;
+        }
+        
+        .right::after {
+            left: -13px;
+        }
+        
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 寬高比 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .practical-info {
+            background-color: var(--accent-color);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--secondary-color);
+        }
+        
+        .info-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .colosseum-bg {
+            background:url("SP-Rome09.jpg");
+            background-size: cover;
+            background-attachment: fixed;
+            color: rgb(233, 133, 19);
+            padding: 80px 0;
+        }
+        
+        .fact-box {
+            background-color: rgba(255,255,255,0.9);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .fact-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+        }
+        
+        /* 優化的"了解更多"按鍵樣式 */
+        .learn-more-btn {
+            align-items: center;
+            background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
+            border: 0;
+            border-radius: 8px;
+            box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+            box-sizing: border-box;
+            color: #ffffff;
+            display: flex;
+            font-size: 16px;
+            justify-content: center;
+            line-height: 1em;
+            max-width: 100%;
+            min-width: 140px;
+            padding: 3px;
+            text-decoration: none;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 15px;
+        }
+        
+        .learn-more-btn:active,
+        .learn-more-btn:hover {
+            outline: 0;
+        }
+        
+        .learn-more-btn span {
+            background-color: rgb(5, 6, 45);
+            padding: 12px 20px;
+            border-radius: 6px;
+            width: 100%;
+            height: 100%;
+            transition: 300ms;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .learn-more-btn:hover span {
+            background: none;
+        }
+        
+        .learn-more-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            z-index: 1000;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::after {
+                left: 21px;
+            }
+            
+            .right {
+                left: 0;
+            }
+            
+            .rome-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .learn-more-btn {
+                min-width: 120px;
+                font-size: 14px;
+            }
+            
+            .learn-more-btn span {
+                padding: 10px 16px;
+            }
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 40px 0;
+        }
+
+        .Rome-hero-section { 
+            background-image: url("./SP-Rome00.jpg"); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 100px 0; 
+            color: rgb(255, 253, 253); 
+        }
+
+    </style>
+</head>
+<body>
+    <!-- 導航欄 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+             <a class="navbar-brand" href="./HwDS01.html">
+            <img src="./StarRail.jpg" alt="旅遊探索者" width="30" height="30" class="me-2">
+            旅遊探索者
+             </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="./HwDS01.html">首頁</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="destinationsDropdown" role="button" data-bs-toggle="dropdown">
+                            目的地
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="./HwDS01Kyoto.html">日本京都</a></li>
+                            <li><a class="dropdown-item" href="./HwDS01Rome.html">義大利羅馬</a></li>
+                            <li><a class="dropdown-item" href="./HwDS01Marrakesh.html">摩洛哥馬拉喀什</a></li>
+                            <li><a class="dropdown-item" href="./HwDS01MachuPicchu.html">秘魯馬丘比丘</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="comparison.html"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 羅馬橫幅 -->
+    <section class="Rome-hero-section">
+        <div class="container">
+            <h1 class="display-4 fw-bold">義大利羅馬</h1>
+            <p class="lead mb-4">永恆之城，西方文明的搖籃
+        </div>
+    </section>
+
+    <!-- 羅馬介紹 -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="section-title">羅馬簡介</h2>
+                    <p>羅馬，義大利的首都，被譽為"永恆之城"，擁有超過2800年的歷史。這座城市曾是強大的羅馬帝國的中心，如今是西方文明和基督教世界的重要象徵。</p>
+                    <p>羅馬以其令人驚嘆的古蹟、豐富的藝術遺產、美味的食物和充滿活力的街頭生活而聞名。從古羅馬競技場到梵蒂岡城，這座城市充滿了歷史和文化的寶藏。</p>
+                    <p>羅馬完美融合了古代遺跡和現代生活，狹窄的中世紀街道與宏偉的巴洛克廣場並存，創造出一個獨特而迷人的城市景觀。</p>
+                </div>
+                <div class="col-lg-6">
+                    <img src="./SP-Rome05.jpg" alt="羅馬全景" class="img-fluid rounded shadow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 歷史時間線 -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center">羅馬歷史</h2>
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h5>公元前753年</h5>
+                        <p>根據傳說，羅穆盧斯和雷穆斯建立羅馬城，開啟了羅馬王政時代。</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h5>公元前509年</h5>
+                        <p>羅馬共和國建立，開始擴張並逐漸控制整個義大利半島。</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h5>公元前27年</h5>
+                        <p>屋大維獲得"奧古斯都"稱號，羅馬帝國開始，進入和平與繁榮的黃金時代。</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h5>公元80年</h5>
+                        <p>羅馬競技場完工，成為羅馬帝國最大的圓形劇場，可容納5萬名觀眾。</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h5>公元313年</h5>
+                        <p>君士坦丁大帝頒布米蘭敕令，基督教在羅馬帝國合法化。</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h5>公元476年</h5>
+                        <p>西羅馬帝國滅亡，但羅馬繼續作為基督教世界的中心和教皇所在地。</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h5>文藝復興時期</h5>
+                        <p>羅馬成為文藝復興的藝術和文化中心，米開朗基羅、拉斐爾等藝術家在此創作。</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h5>1870年</h5>
+                        <p>羅馬成為統一後的義大利王國首都，結束了教皇的世俗權力。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 文化特色 -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center">文化與生活方式</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card culture-card">
+                        <img src="./SP-Rome06.jpg" class="card-img-top culture-img" alt="義大利美食">
+                        <div class="card-body">
+                            <h5 class="card-title">美食文化</h5>
+                            <p class="card-text">羅馬以其豐富的美食傳統聞名，包括碳烤義大利麵、猶太風洋薊、鹽烤鱸魚和經典的提拉米蘇。羅馬人重視新鮮食材和傳統烹飪方法。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card culture-card">
+                        <img src="./SP-Rome07.jpg" class="card-img-top culture-img" alt="藝術遺產">
+                        <div class="card-body">
+                            <h5 class="card-title">藝術遺產</h5>
+                            <p class="card-text">羅馬擁有世界上最豐富的藝術遺產，從古代雕塑到文藝復興傑作。博爾蓋塞美術館、梵蒂岡博物館和眾多教堂收藏著無數藝術珍品。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card culture-card">
+                        <img src="./SP-Rome08.jpg" class="card-img-top culture-img" alt="街頭生活">
+                        <div class="card-body">
+                            <h5 class="card-title">街頭生活</h5>
+                            <p class="card-text">羅馬的街頭生活充滿活力，從特拉斯提弗列的時尚酒吧到納沃納廣場的街頭藝人。羅馬人喜歡在戶外咖啡館社交，享受"甜蜜生活"。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主要景點 -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center">主要景點</h2>
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="card attraction-card">
+                        <img src="./SP-Rome01.jpg" class="card-img-top attraction-img" alt="羅馬競技場">
+                        <div class="card-body">
+                            <h5 class="card-title">羅馬競技場</h5>
+                            <p class="card-text">古羅馬時期最大的圓形劇場，建於公元72-80年，可容納5-8萬名觀眾。這裡曾舉辦角鬥士比賽、野獸狩獵和公開處決等娛樂活動。</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted"><i class="fas fa-map-marker-alt me-1"></i> 競技場區</small>
+                                <span class="badge bg-primary">世界遺產</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card attraction-card">
+                        <img src="./SP-Rome02.jpg" class="card-img-top attraction-img" alt="梵蒂岡">
+                        <div class="card-body">
+                            <h5 class="card-title">梵蒂岡城</h5>
+                            <p class="card-text">世界上最小的獨立國家，天主教會的中心。必訪景點包括聖彼得大教堂、梵蒂岡博物館和西斯汀教堂，內有米開朗基羅的《創世紀》穹頂畫。</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted"><i class="fas fa-map-marker-alt me-1"></i> 梵蒂岡</small>
+                                <span class="badge bg-primary">世界遺產</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card attraction-card">
+                        <img src="./SP-Rome03.jpg" class="card-img-top attraction-img" alt="萬神殿">
+                        <div class="card-body">
+                            <h5 class="card-title">萬神殿</h5>
+                            <p class="card-text">古羅馬保存最完好的建築之一，建於公元118-125年。其巨大的混凝土穹頂至今仍是世界上最大的無鋼筋混凝土穹頂，中央有一個9米寬的開口。</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted"><i class="fas fa-map-marker-alt me-1"></i> 萬神殿區</small>
+                                <span class="badge bg-primary">世界遺產</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card attraction-card">
+                        <img src="./SP-Rome04.jpg" class="card-img-top attraction-img" alt="特雷維噴泉">
+                        <div class="card-body">
+                            <h5 class="card-title">特雷維噴泉</h5>
+                            <p class="card-text">羅馬最大的巴洛克風格噴泉，高26米，寬49米。根據傳統，遊客背對噴泉向右肩後拋硬幣，可以確保再次回到羅馬。</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted"><i class="fas fa-map-marker-alt me-1"></i> 特雷維區</small>
+                                <span class="badge bg-success">免費參觀</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 羅馬之最 -->
+    <section class="colosseum-bg">
+        <div class="container">
+            <h2 class="text-center mb-5 text-white">羅馬之最</h2>
+            <div class="row">
+                <div class="col-md-3 text-center">
+                    <div class="fact-box">
+                        <span class="fact-number">2800+</span>
+                        <p>年歷史</p>
+                    </div>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="fact-box">
+                        <span class="fact-number">900+</span>
+                        <p>座教堂</p>
+                    </div>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="fact-box">
+                        <span class="fact-number">2000+</span>
+                        <p>座噴泉</p>
+                    </div>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="fact-box">
+                        <span class="fact-number">13</span>
+                        <p>座方尖碑</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 視頻介紹 -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center">羅馬之旅</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="video-container">
+                        <!-- 實際使用時替換為真實的羅馬旅遊視頻 -->
+                        <iframe src="https://www.youtube.com/embed/oSexfR0Ubzw" title="羅馬旅遊視頻" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 實用資訊 -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center">實用旅行資訊</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="practical-info">
+                        <div class="info-icon">
+                            <i class="fas fa-plane"></i>
+                        </div>
+                        <h5>到達方式</h5>
+                        <p>羅馬有兩個主要機場：菲烏米奇諾機場和錢皮諾機場。從機場可乘坐火車、巴士或計程車到達市中心，車程約30-45分鐘。</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="practical-info">
+                        <div class="info-icon">
+                            <i class="fas fa-bed"></i>
+                        </div>
+                        <h5>住宿建議</h5>
+                        <p>羅馬提供各種住宿選擇，從豪華酒店到經濟型旅館。推薦住在歷史中心區，方便步行遊覽主要景點。</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="practical-info">
+                        <div class="info-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <h5>美食體驗</h5>
+                        <p>不要錯過羅馬特色美食如碳烤義大利麵、鹽烤鱸魚、猶太風洋薊和經典的羅馬式披薩。在特拉斯提弗列區可以找到許多地道餐廳。</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="practical-info">
+                        <div class="info-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h5>最佳旅行時間</h5>
+                        <p>春季（4月-6月）和秋季（9月-10月）是最佳時節，天氣宜人，遊客相對較少。夏季炎熱且擁擠，冬季較為涼爽但遊客較少。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 返回頂部按鈕 -->
+    <button id="backToTop" class="back-to-top btn btn-primary rounded-circle">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- 頁腳 -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>關於我們</h5>
+                    <p>旅遊探索者致力於提供最新、最全面的旅遊資訊，幫助旅行者規劃完美的旅程。</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>快速連結</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="./HwDS01.html" class="text-white">首頁</a></li>
+                        <li><a href="./HwDS01Kyoto.html" class="text-white">日本京都</a></li>
+                        <li><a href="./HwDS01Rome.html" class="text-white">義大利羅馬</a></li>
+                        <li><a href="./HwDS01Marrakesh.html" class="text-white">摩洛哥馬拉喀什</a></li>
+                        <li><a href="./HwDS01MachuPicchu.html" class="text-white">秘魯馬丘比丘</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>聯絡我們</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-envelope me-2"></i> info@travelexplorer.com</li>
+                        <li><i class="fas fa-phone me-2"></i> +852 1321 2465</li>
+                        <li><i class="fas fa-map-marker-alt me-2"></i> 尖沙咀加連威老道39號太興商業大廈地下C2鋪</li>
+                    </ul>
+                    <div class="mt-3">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="bg-white">
+            <div class="text-center pt-3">
+                <p>&copy; 2025 旅遊探索者 By Tom</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS 和 Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    
+    <!-- 自定義JavaScript -->
+    <script>
+        // 返回頂部功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const backToTopButton = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.style.display = 'block';
+                } else {
+                    backToTopButton.style.display = 'none';
+                }
+            });
+            
+            backToTopButton.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // 平滑滾動到錨點
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

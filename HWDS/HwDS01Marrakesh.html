@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>摩洛哥馬拉喀什 - 旅遊探索者</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome 圖標 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- 自定義CSS -->
+    <style>
+        :root {
+            --primary-color: #c1272d; /* 摩洛哥紅 */
+            --secondary-color: #ff7e00; /* 摩洛哥橙 */
+            --accent-color: #006233; /* 摩洛哥綠 */
+            --dark-color: #2c3e50;
+            --light-color: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Microsoft JhengHei', sans-serif;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .culture-card {
+            transition: transform 0.3s;
+            margin-bottom: 30px;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .culture-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .culture-img {
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .attraction-card {
+            border: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        
+        .attraction-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .attraction-img {
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .moroccan-pattern {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M50,20 L60,40 L80,40 L65,55 L75,75 L50,65 L25,75 L35,55 L20,40 L40,40 Z" fill="%23c1272d" opacity="0.1"/></svg>');
+            background-size: 100px 100px;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--light-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid var(--primary-color);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .left::after {
+            right: -13px;
+        }
+        
+        .right::after {
+            left: -13px;
+        }
+        
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 寬高比 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .practical-info {
+            background-color: #fffaf0;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--secondary-color);
+        }
+        
+        .info-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .souk-bg {
+            background:url("./SP-Marrakech09.jpg");
+            background-size: cover;
+            background-attachment: fixed;
+            color: rgb(233, 85, 122);
+            padding: 80px 0;
+        }
+        
+        .fact-box {
+            background-color: rgba(255,255,255,0.9);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .fact-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+        }
+        
+        .cultural-tip {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .cultural-tip i {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            z-index: 1000;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::after {
+                left: 21px;
+            }
+            
+            .right {
+                left: 0;
+            }
+            
+            .marrakech-hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 40px 0;
+        }
+
+        .Marrakech-hero-section {
+            background-image: url("./SP-Marrakech00.jpg"); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 100px 0; 
+            color: rgb(255, 255, 255); 
+        }
+    </style>
+</head>
+<body>
+    <!-- 導航欄 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="./HwDS01.html">
+            <img src="./StarRail.jpg" alt="旅遊探索者" width="30" height="30" class="me-2">
+            旅遊探索者
+             </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="./HwDS01.html">首頁</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="destinationsDropdown" role="button" data-bs-toggle="dropdown">
+                            目的地
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="./HwDS01Kyoto.html">日本京都</a></li>
+                            <li><a class="dropdown-item" href="./HwDS01Rome.html">義大利羅馬</a></li>
+                            <li><a class="dropdown-item" href="./HwDS01Marrakesh.html">摩洛哥馬拉喀什</a></li>
+                            <li><a class="dropdown-item" href="./HwDS01MachuPicchu.html">秘魯馬丘比丘</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 馬拉喀什橫幅 -->
+    <section class="Marrakech-hero-section">
+    <div class="container">
+            <h1 class="display-4 fw-bold">摩洛哥馬拉喀什</h1>
+            <p class="lead mb-4">紅色之城，北非的魔法花園</p>
+        </div>
+    </section>
+
+    <!-- 馬拉喀什介紹 -->
+    <section class="py-5 arabic-pattern">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="section-title">馬拉喀什簡介</h2>
+                    <p>馬拉喀什，被稱為"紅色之城"，是摩洛哥四大皇城之一，坐落於阿特拉斯山脈腳下。這座城市以其紅色的城牆、繁華的集市和豐富的文化遺產而聞名。</p>
+                    <p>馬拉喀什是摩洛哥的文化中心，融合了柏柏爾、阿拉伯和非洲的傳統。從熱鬧的德吉瑪廣場到寧靜的馬若雷勒花園，這座城市提供了獨特的感官體驗。</p>
+                    <p>馬拉喀什完美地平衡了傳統與現代，既有保存完好的古老麥地那，又有現代化的豪華度假村和高爾夫球場。</p>
+                </div>
+                <div class="col-lg-6">
+                    <img src="./SP-Marrakech05.jpg" alt="馬拉喀什市場" class="img-fluid rounded shadow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 歷史時間線 -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center">馬拉喀什歷史</h2>
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h5>1062年</h5>
+                        <p>阿爾摩拉維德王朝的優素福·伊本·塔什芬建立馬拉喀什，成為帝國首都。</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h5>1147年</h5>
+                        <p>阿爾摩哈德王朝佔領馬拉喀什，建造了庫圖比亞清真寺等標誌性建築。</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h5>1269年</h5>
+                        <p>馬里尼德王朝將首都遷至菲斯，馬拉喀什的重要性下降。</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h5>16世紀</h5>
+                        <p>薩阿迪王朝恢復馬拉喀什作為首都的地位，建造了精美的薩阿迪王朝陵墓。</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h5>1912年</h5>
+                        <p>摩洛哥成為法國保護國，馬拉喀什開始現代化進程。</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h5>1956年</h5>
+                        <p>摩洛哥獨立，馬拉喀什成為重要的旅遊和文化中心。</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h5>1985年</h5>
+                        <p>馬拉喀什麥地那被聯合國教科文組織列為世界文化遺產。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 文化特色 -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center">文化與生活方式</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card culture-card">
+                        <img src="./SP-Marrakech06.jpg" class="card-img-top culture-img" alt="傳統集市">
+                        <div class="card-body">
+                            <h5 class="card-title">傳統集市文化</h5>
+                            <p class="card-text">馬拉喀什的集市是城市的心臟，迷宮般的小巷裡充滿了香料、皮革、珠寶和傳統手工藝品。討價還價是這裡的重要文化傳統。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card culture-card">
+                        <img src="./SP-Marrakech07.jpg" class="card-img-top culture-img" alt="摩洛哥美食">
+                        <div class="card-body">
+                            <h5 class="card-title">摩洛哥美食</h5>
+                            <p class="card-text">馬拉喀什以其豐富的美食聞名，包括塔吉鍋、古斯古斯、薄荷茶和各式糕點。香料市場提供了製作傳統菜餚所需的各種原料。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card culture-card">
+                        <img src="./SP-Marrakech08.jpg" class="card-img-top culture-img" alt="傳統音樂">
+                        <div class="card-body">
+                            <h5 class="card-title">音樂與節慶</h5>
+                            <p class="card-text">馬拉喀什是摩洛哥傳統音樂的中心，特別是格納瓦音樂。城市全年舉辦各種文化節慶，包括著名的馬拉喀什國際電影節。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 文化禮儀提示 -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center">文化禮儀提示</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="cultural-tip text-center">
+                        <i class="fas fa-tshirt"></i>
+                        <h5>著裝要求</h5>
+                        <p>在宗教場所和傳統區域，建議穿著保守，遮蓋肩膀和膝蓋。</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="cultural-tip text-center">
+                        <i class="fas fa-handshake"></i>
+                        <h5>問候禮儀</h5>
+                        <p>當地人通常用右手握手，親密的朋友可能會親吻臉頰。</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="cultural-tip text-center">
+                        <i class="fas fa-camera"></i>
+                        <h5>拍照禮儀</h5>
+                        <p>拍攝當地人前請先徵得同意，特別是在集市和傳統區域。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主要景點 -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center">主要景點</h2>
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="card attraction-card">
+                        <img src="./SP-Marrakech01.jpg" class="card-img-top attraction-img" alt="德吉瑪廣場">
+                        <div class="card-body">
+                            <h5 class="card-title">德吉瑪廣場</h5>
+                            <p class="card-text">馬拉喀什的心臟和靈魂，被聯合國教科文組織列為人類口頭和非物質遺產代表作。白天是市場，夜晚變成巨大的露天餐廳和娛樂場所，有說書人、音樂家、舞者和魔術師表演。</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted"><i class="fas fa-map-marker-alt me-1"></i> 麥地那中心</small>
+                                <span class="badge bg-primary">世界遺產</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card attraction-card">
+                        <img src="./SP-Marrakech02.jpg" class="card-img-top attraction-img" alt="庫圖比亞清真寺">
+                        <div class="card-body">
+                            <h5 class="card-title">庫圖比亞清真寺</h5>
+                            <p class="card-text">馬拉喀什的標誌性建築，建於12世紀高77米的尖塔是城市最高的建築。清真寺得名於曾經在附近出售書籍的商人，其建築風格影響了包括塞維利亞的吉拉爾達塔在內的許多建築。</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted"><i class="fas fa-map-marker-alt me-1"></i> 德吉瑪廣場附近</small>
+                                <span class="badge bg-success">外部參觀免費</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card attraction-card">
+                        <img src="./SP-Marrakech03.jpg" class="card-img-top attraction-img" alt="馬若雷勒花園">
+                        <div class="card-body">
+                            <h5 class="card-title">馬若雷勒花園</h5>
+                            <p class="card-text">由法國畫家雅克·馬若雷勒設計，後來被伊夫·聖羅蘭修復的令人驚嘆的植物園。以其鮮豔的鈷藍色建築和豐富的仙人掌收藏而聞名，是喧囂城市中的一片寧靜綠洲。</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted"><i class="fas fa-map-marker-alt me-1"></i> 新城</small>
+                                <span class="badge bg-warning text-dark">需購票</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card attraction-card">
+                        <img src="./SP-Marrakech04.jpg" class="card-img-top attraction-img" alt="巴伊亞宮">
+                        <div class="card-body">
+                            <h5 class="card-title">巴伊亞宮</h5>
+                            <p class="card-text">19世紀末建造的宏偉宮殿，展示了摩洛哥建築和裝飾藝術的精髓。宮殿名稱意為"輝煌"，擁有精美的庭院、花園和裝飾華麗的房間，是摩洛哥傳統建築的傑出代表。</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted"><i class="fas fa-map-marker-alt me-1"></i> 麥地那</small>
+                                <span class="badge bg-warning text-dark">需購票</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 馬拉喀什之最 -->
+    <section class="souk-bg">
+        <div class="container">
+            <h2 class="text-center mb-5 text-white">馬拉喀什之最</h2>
+            <div class="row">
+                <div class="col-md-3 text-center">
+                    <div class="fact-box">
+                        <span class="fact-number">1000+</span>
+                        <p>年歷史</p>
+                    </div>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="fact-box">
+                        <span class="fact-number">19km</span>
+                        <p>紅色城牆長度</p>
+                    </div>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="fact-box">
+                        <span class="fact-number">300+</span>
+                        <p>酒店和里亞德</p>
+                    </div>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="fact-box">
+                        <span class="fact-number">4</span>
+                        <p>皇城之一</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 視頻介紹 -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center">馬拉喀什之旅</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="video-container">
+                        <!-- 實際使用時替換為真實的馬拉喀什旅遊視頻 -->
+                        <iframe width="640" height="360" src="https://www.youtube.com/embed/vcsIDsEqN5I" title="馬拉喀什旅遊視頻" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 實用資訊 -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center">實用旅行資訊</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="practical-info">
+                        <div class="info-icon">
+                            <i class="fas fa-plane"></i>
+                        </div>
+                        <h5>到達方式</h5>
+                        <p>馬拉喀什-梅納拉國際機場有來自歐洲和中東主要城市的直飛航班。從機場可乘坐計程車或巴士到達市中心，車程約15-20分鐘。</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="practical-info">
+                        <div class="info-icon">
+                            <i class="fas fa-bed"></i>
+                        </div>
+                        <h5>住宿建議</h5>
+                        <p>馬拉喀什提供各種住宿選擇，從傳統里亞德（庭院住宅）到豪華度假村。推薦住在麥地那體驗傳統氛圍，或住在新城享受現代便利。</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="practical-info">
+                        <div class="info-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <h5>美食體驗</h5>
+                        <p>不要錯過傳統塔吉鍋、古斯古斯、烤肉串和新鮮薄荷茶。德吉瑪廣場的夜市是品嚐街頭美食的絕佳地點。</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="practical-info">
+                        <div class="info-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h5>最佳旅行時間</h5>
+                        <p>春季（3月-5月）和秋季（9月-11月）是最佳時節，天氣溫和宜人。夏季炎熱，冬季夜晚較冷但白天溫暖。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 返回頂部按鈕 -->
+    <button id="backToTop" class="back-to-top btn btn-primary rounded-circle">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- 頁腳 -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>關於我們</h5>
+                    <p>旅遊探索者致力於提供最新、最全面的旅遊資訊，幫助旅行者規劃完美的旅程。</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>快速連結</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="./HwDS01.html" class="text-white">首頁</a></li>
+                        <li><a href="./HwDS01Kyoto.html" class="text-white">日本京都</a></li>
+                        <li><a href="./HwDS01Rome.html" class="text-white">義大利羅馬</a></li>
+                        <li><a href="./HwDS01Marrakesh.html" class="text-white">摩洛哥馬拉喀什</a></li>
+                        <li><a href="./HwDS01MachuPicchu.html" class="text-white">秘魯馬丘比丘</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>聯絡我們</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-envelope me-2"></i> info@travelexplorer.com</li>
+                        <li><i class="fas fa-phone me-2"></i> +852 1321 2465</li>
+                        <li><i class="fas fa-map-marker-alt me-2"></i> 尖沙咀加連威老道39號太興商業大廈地下C2鋪</li>
+                    </ul>
+                    <div class="mt-3">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="bg-white">
+            <div class="text-center pt-3">
+                <p>&copy; 2025 旅遊探索者 By Tom</p>
+            </div>
+        </div>+
+    </footer>
+
+    <!-- Bootstrap 5 JS 和 Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    
+    <!-- 自定義JavaScript -->
+    <script>
+        // 返回頂部功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const backToTopButton = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.style.display = 'block';
+                } else {
+                    backToTopButton.style.display = 'none';
+                }
+            });
+            
+            backToTopButton.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

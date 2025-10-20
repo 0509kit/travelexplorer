@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>秘魯馬丘比丘 - 旅遊探索者</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome 圖標 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- 自定義CSS -->
+    <style>
+        :root {
+            --primary-color: #d4af37; /* 印加金 */
+            --secondary-color: #8b4513; /* 大地棕 */
+            --accent-color: #2f4f4f; /* 深石板灰 */
+            --dark-color: #2c3e50;
+            --light-color: #f8f9fa;
+        } 
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+              
+        .section-title {
+            position: relative;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .culture-card {
+            transition: transform 0.3s;
+            margin-bottom: 30px;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .culture-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .culture-img {
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .attraction-card {
+            border: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        
+        .attraction-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .attraction-img {
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .inca-pattern {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect x="20" y="20" width="60" height="60" fill="none" stroke="%23d4af37" stroke-width="2" opacity="0.1"/><rect x="30" y="30" width="40" height="40" fill="none" stroke="%23d4af37" stroke-width="1" opacity="0.1"/></svg>');
+            background-size: 100px 100px;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--light-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid var(--primary-color);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .left::after {
+            right: -13px;
+        }
+        
+        .right::after {
+            left: -13px;
+        }
+        
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 寬高比 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .practical-info {
+            background-color: #fdf6e3;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--secondary-color);
+        }
+        
+        .info-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .mountain-bg {
+            background:url("./SP-MachuPicchu09.jpg");
+            background-size: cover;
+            background-attachment: fixed;
+            color: rgb(163, 123, 12);
+            padding: 80px 0;
+        }
+        
+        .fact-box {
+            background-color: rgba(255,255,255,0.9);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .fact-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+        }
+        
+        .travel-tip {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .travel-tip i {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .altitude-warning {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::after {
+                left: 21px;
+            }
+            
+            .right {
+                left: 0;
+            }
+            
+            .machu-picchu-hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 40px 0;
+        }
+        
+        .inca-border {
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .MachuPicchu-hero-section {
+            background-image: url("./SP-MachuPicchu00.jpg"); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 100px 0; 
+            color: rgb(255, 255, 255); 
+        }
+    </style>
+</head>
+<body>
+    <!-- 導航欄 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+             <a class="navbar-brand" href="./HwDS01.html">
+            <img src="./StarRail.jpg" alt="旅遊探索者" width="30" height="30" class="me-2">
+            旅遊探索者
+             </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./HwDS01.html">首頁</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" id="destinationsDropdown" role="button" data-bs-toggle="dropdown">
+                            目的地
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="./HwDS01Kyoto.html">日本京都</a></li>
+                            <li><a class="dropdown-item" href="./HwDS01Rome.html">義大利羅馬</a></li>
+                            <li><a class="dropdown-item" href="./HwDS01Marrakesh.html">摩洛哥馬拉喀什</a></li>
+                            <li><a class="dropdown-item active" href="./HwDS01MachuPicchu.html">秘魯馬丘比丘</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 馬丘比丘橫幅 -->
+    <section class="MachuPicchu-hero-section">
+    <div class="container">
+             <h1 class="display-4 fw-bold">秘魯馬丘比丘</h1>
+            <p class="lead mb-4">印加帝國的失落之城，世界新七大奇跡</p>
+        </div>
+    </section>
+
+    <!-- 馬丘比丘介紹 -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="section-title">馬丘比丘簡介</h2>
+                    <p>馬丘比丘，意為"古老的山"，是15世紀印加帝國建造的驚人石造遺址，位於秘魯安第斯山脈海拔2,430公尺的高處。這座"失落之城"在1911年被美國歷史學家海勒姆·賓厄姆重新發現。</p>
+                    <p>馬丘比丘被認為是印加統治者的皇家莊園或宗教聖地，其精確的石造技術、天文對齊和令人驚嘆的山景使其成為世界上最著名的考古遺址之一。</p>
+                    <p>1983年，馬丘比丘被聯合國教科文組織列為世界遺產，並在2007年被評為世界新七大奇跡之一。</p>
+                </div>
+                <div class="col-lg-6">
+                    <img src="./SP-MachuPicchu05.jpg" alt="馬丘比丘遺址" class="img-fluid rounded shadow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 歷史時間線 -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center">馬丘比丘歷史</h2>
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h5>約1450年</h5>
+                        <p>印加帝國皇帝帕查庫特克下令建造馬丘比丘，作為皇家莊園或宗教避難所。</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h5>1530年代</h5>
+                        <p>西班牙征服者到達秘魯，但從未發現馬丘比丘，使其免遭破壞。</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h5>1572年</h5>
+                        <p>最後的印加帝國滅亡，馬丘比丘被遺棄並逐漸被植被覆蓋。</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h5>1911年</h5>
+                        <p>美國歷史學家海勒姆·賓厄姆在當地人的指引下"重新發現"馬丘比丘。</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h5>1981年</h5>
+                        <p>馬丘比丘被秘魯政府宣布為歷史保護區。</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h5>1983年</h5>
+                        <p>聯合國教科文組織將馬丘比丘列為世界文化與自然雙重遺產。</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h5>2007年</h5>
+                        <p>馬丘比丘被評選為世界新七大奇跡之一。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 文化特色 -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center">印加文化與建築</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card culture-card">
+                        <img src="./SP-MachuPicchu06.jpg" class="card-img-top culture-img" alt="印加石造技術">
+                        <div class="card-body">
+                            <h5 class="card-title">印加石造技術</h5>
+                            <p class="card-text">印加人掌握了驚人的石造技術，不使用砂漿卻能將石塊完美契合。馬丘比丘的石牆能夠抵抗頻繁的地震，展現了印加工程師的卓越智慧。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card culture-card">
+                        <img src="./SP-MachuPicchu07.jpg" class="card-img-top culture-img" alt="農業梯田">
+                        <div class="card-body">
+                            <h5 class="card-title">農業梯田系統</h5>
+                            <p class="card-text">馬丘比丘擁有複雜的梯田系統，用於農業種植和防止山坡侵蝕。這些梯田展示了印加人對山地環境的巧妙適應和可持續農業實踐。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card culture-card">
+                        <img src="./SP-MachuPicchu08.jpg" class="card-img-top culture-img" alt="天文觀測">
+                        <div class="card-body">
+                            <h5 class="card-title">天文觀測</h5>
+                            <p class="card-text">印加人是熟練的天文學家，馬丘比丘的建築與太陽、月亮和星星的位置精確對齊。拴日石等結構用於觀測天體和確定重要日期。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主要景點 -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center">主要景點</h2>
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="card attraction-card">
+                        <img src="./SP-MachuPicchu01.jpg" class="card-img-top attraction-img" alt="拴日石">
+                        <div class="card-body">
+                            <h5 class="card-title">拴日石 (Intihuatana)</h5>
+                            <p class="card-text">這塊精心雕刻的花崗岩石被認為是印加人的天文鐘或日曆。在春秋分時，太陽會直接位於石柱正上方而不產生陰影。Intihuatana意為"拴住太陽的地方"。</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted"><i class="fas fa-map-marker-alt me-1"></i> 神聖廣場</small>
+                                <span class="badge bg-primary">宗教遺址</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card attraction-card">
+                        <img src="./SP-MachuPicchu02.jpg" class="card-img-top attraction-img" alt="太陽神廟">
+                        <div class="card-body">
+                            <h5 class="card-title">太陽神廟 (Temple of the Sun)</h5>
+                            <p class="card-text">馬丘比丘最精美的建築之一，這座半圓形神廟擁有精確切割的石牆和面向冬至日出方向的窗戶。下方有一個皇家陵墓，可能用於木乃伊製作。</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted"><i class="fas fa-map-marker-alt me-1"></i> 宗教區</small>
+                                <span class="badge bg-primary">宗教遺址</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card attraction-card">
+                        <img src="./SP-MachuPicchu03.jpg" class="card-img-top attraction-img" alt="主神廟">
+                        <div class="card-body">
+                            <h5 class="card-title">主神廟 (Main Temple)</h5>
+                            <p class="card-text">位於神聖廣場的大型三牆神廟，以其巨大的石塊和精確的建築而聞名。西牆的梯形壁龛可能用於存放重要宗教物品或木乃伊。</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted"><i class="fas fa-map-marker-alt me-1"></i> 神聖廣場</small>
+                                <span class="badge bg-primary">宗教遺址</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card attraction-card">
+                        <img src="./SP-MachuPicchu04.jpg" class="card-img-top attraction-img" alt="華納比丘">
+                        <div class="card-body">
+                            <h5 class="card-title">華納比丘 (Wayna Picchu)</h5>
+                            <p class="card-text">位於馬丘比丘北部的陡峭山峰，意為"年輕的山峰"。攀登華納比丘可以獲得俯瞰整個遺址的壯觀視角，但需要額外許可證且每日名額有限。</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted"><i class="fas fa-map-marker-alt me-1"></i> 馬丘比丘北部</small>
+                                <span class="badge bg-warning text-dark">需額外許可</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 旅行提示 -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center">重要旅行提示</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="travel-tip text-center">
+                        <i class="fas fa-mountain"></i>
+                        <h5>高原反應預防</h5>
+                        <p>提前在庫斯科適應海拔，多喝水，避免劇烈運動，可考慮服用高原反應藥物。</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="travel-tip text-center">
+                        <i class="fas fa-ticket-alt"></i>
+                        <h5>門票預訂</h5>
+                        <p>馬丘比丘門票必須提前在官方網站預訂，特別是華納比丘的許可證很快售罄。</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="travel-tip text-center">
+                        <i class="fas fa-hiking"></i>
+                        <h5>印加古道</h5>
+                        <p>經典的4天印加古道徒步需提前數月預訂，並且必須通過授權旅行社安排。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="altitude-warning mt-4">
+                <h5><i class="fas fa-exclamation-triangle me-2"></i>海拔注意事項</h5>
+                <p>馬丘比丘海拔2,430公尺，庫斯科海拔3,400公尺。建議在庫斯科停留2-3天適應高原環境，避免高原反應。症狀包括頭痛、噁心、疲勞和呼吸困難。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 馬丘比丘之最 -->
+    <section class="mountain-bg">
+        <div class="container">
+            <h2 class="text-center mb-5 text-white">馬丘比丘之最</h2>
+            <div class="row">
+                <div class="col-md-3 text-center">
+                    <div class="fact-box">
+                        <span class="fact-number">2,430</span>
+                        <p>公尺海拔高度</p>
+                    </div>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="fact-box">
+                        <span class="fact-number">1450</span>
+                        <p>約建造年份</p>
+                    </div>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="fact-box">
+                        <span class="fact-number">1911</span>
+                        <p>重新發現年份</p>
+                    </div>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="fact-box">
+                        <span class="fact-number">200+</span>
+                        <p>建築結構數量</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 視頻介紹 -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center">馬丘比丘之旅</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="video-container">
+                        <!-- 實際使用時替換為真實的馬丘比丘旅遊視頻 -->
+                        <iframe src="https://www.youtube.com/embed/Zk9J5xnTVMA" title="馬丘比丘旅遊視頻" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 實用信息 -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center">實用旅行信息</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="practical-info">
+                        <div class="info-icon">
+                            <i class="fas fa-plane"></i>
+                        </div>
+                        <h5>到達方式</h5>
+                        <p>從利馬飛往庫斯科，然後乘火車到熱水鎮，最後轉乘巴士上山到達馬丘比丘。也可以選擇徒步印加古道到達。</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="practical-info">
+                        <div class="info-icon">
+                            <i class="fas fa-bed"></i>
+                        </div>
+                        <h5>住宿建議</h5>
+                        <p>建議住在熱水鎮（Aguas Calientes），這是距離馬丘比丘最近的小鎮，提供各種住宿選擇，從經濟型到豪華酒店。</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="practical-info">
+                        <div class="info-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <h5>美食體驗</h5>
+                        <p>不要錯過秘魯特色美食如酸橘汁醃魚、烤豚鼠（cuy）、羊駝肉和當地的印加可樂。庫斯科和熱水鎮有許多優秀餐廳。</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="practical-info">
+                        <div class="info-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h5>最佳旅行時間</h5>
+                        <p>乾季（5月-9月）是最佳時節，天氣晴朗適合徒步。雨季（11月-3月）遊客較少但可能下雨。6月是印加節慶高峰期。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="inca-border mt-4">
+                <h5><i class="fas fa-passport me-2"></i>入場規定與限制</h5>
+                <p>自2019年起，馬丘比丘實施分時段入場制度，遊客必須在預訂的時間內入場。每日遊客數量有限制，建議提前數週甚至數月預訂門票。進入遺址時需出示護照原件。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁腳 -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>關於我們</h5>
+                    <p>旅遊探索者致力於提供最新、最全面的旅遊信息，幫助旅行者規劃完美的旅程。</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>快速鏈接</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="./HwDS01.html" class="text-white">首頁</a></li>
+                        <li><a href="./HwDS01Kyoto.html" class="text-white">日本京都</a></li>
+                        <li><a href="./HwDS01Rome.html" class="text-white">義大利羅馬</a></li>
+                        <li><a href="./HwDS01Marrakesh.html" class="text-white">摩洛哥馬拉喀什</a></li>
+                        <li><a href="./HwDS01MachuPicchu.html" class="text-white">秘魯馬丘比丘</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>聯繫我們</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-envelope me-2"></i> info@travelexplorer.com</li>
+                        <li><i class="fas fa-phone me-2"></i> +852 1321 2465</li>
+                        <li><i class="fas fa-map-marker-alt me-2"></i> 尖沙咀加連威老道39號太興商業大廈地下C2鋪</li>
+                    </ul>
+                    <div class="mt-3">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="bg-white">
+            <div class="text-center pt-3">
+                <p>&copy; 2025 旅遊探索者 By Tom</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS 和 Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
